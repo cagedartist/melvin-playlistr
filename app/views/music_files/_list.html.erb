@@ -1,0 +1,39 @@
+<%# local variables: music_files (required); show_user (optional, default false) %>
+<% user ||= nil -%>
+<% enable_editing = current_user.admin? || (user && user.id == current_user.id) %>
+<table>
+  <tr>
+    <th>Url</th>
+    <th>Title</th>
+    <th>Artist Name</th>
+    <th>Duration</th>
+    <th>My Rating</th>
+    <th>Average User Rating</th>
+    <% unless user %>
+    <th>Person</th>
+    <% end %>
+    <% if enable_editing %>
+    <th></th>
+    <% end %>
+  </tr>
+
+<% music_files.each do |music_file| %>
+  <tr>
+    <td><%= music_file.url %></td>
+    <td><%= music_file.title %></td>
+    <td><%= music_file.artist_name %></td>
+    <td><%= music_file.duration %></td>
+    <td><%= render :partial => 'ratings/form', :locals => {:music_file => music_file, :rating => fetch_current_user_rating(music_file.id) }%></td>
+    <td><%= music_file.average_rating.present? ? number_with_precision(music_file.average_rating, :precision => 1) : 'n/a' %></td>
+    <% unless user %>
+    <td><%= music_file.user %></td>
+    <% end %>
+    <% if enable_editing %>
+    <td>
+      <%= link_to 'Edit', edit_user_music_file_path(current_user, music_file) %>
+      <%= link_to 'Delete', user_music_file_path(current_user, music_file), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

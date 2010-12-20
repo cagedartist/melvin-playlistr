@@ -1,0 +1,23 @@
+<h1>Dynamically-Generated Top 20 Playlist</h1>
+<% if @playlist.present? %>
+<p>This Extended M3U format playlist consists of the top 20 songs (by average rating) from you and your friends, shuffled randomly.</p>
+
+<% if @playlist.size < 20 %>
+<p class="warning">
+  We need more songs! 
+  Please <%= link_to "add some music", user_path(current_user) %> or <%= link_to "add some friends", users_path %> who have music.
+</p>
+<% end %>
+
+<textarea rows="41" cols="100">
+#EXTM3U
+<% @playlist.each do |mf| %>
+#EXTINF:<%= mf.duration %>, <%= mf.artist_name %> - <%= mf.title %>
+<%= mf.url %>
+<% end %>
+</textarea>
+
+<% else %>
+<%# no playlist files %>
+<p>Before we can generate a playlist, you'll need to <%= link_to "add some music", user_path(current_user) %> or <%= link_to "add some friends", users_path %> who have music.</p>
+<% end %>

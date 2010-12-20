@@ -1,0 +1,14 @@
+<% form_for(rating, :html => { :class => 'rating' }) do |f| %>
+  <%= hidden_field_tag("music_file_id", music_file.id) %>
+  <%= f.label("value_1", content_tag(:span, '1')) %>
+  <%= radio_button_tag("rating[value]", 1, 1 == rating.value) %>
+  <%= f.label("value_2", content_tag(:span, '2')) %>
+  <%= radio_button_tag("rating[value]", 2, 2 == rating.value) %>
+  <%= f.label("value_3", content_tag(:span, '3')) %>
+  <%= radio_button_tag("rating[value]", 3, 3 == rating.value) %>
+  <%= f.label("value_4", content_tag(:span, '4')) %>
+  <%= radio_button_tag("rating[value]", 4, 4 == rating.value) %>
+  <%= f.label("value_5", content_tag(:span, '5')) %>
+  <%= radio_button_tag("rating[value]", 5, 5 == rating.value) %>
+  <%= f.submit :Submit %>
+<% end %>

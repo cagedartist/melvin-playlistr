@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<h1>People</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th class="file-count">MP3 Files</th>
+    <th class="friend-links">Friend Status</th>
+    <% if current_user.admin? %>
+    <th class="action-links">ADMIN ONLY</th>
+    <% end %>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to user.login, user  %></td>
+    <td class="file-count"><%= user.music_files.count %></td>
+    <td>
+      <% if current_user.id == user.id %>
+      You!
+      <% elsif @friend_ids.include?(user.id) %>
+      Friend <%= link_to '(remove)', unfriend_user_path(user) %>
+      <% else %>
+      <%= link_to 'Add as a Friend', friend_user_path(user) %>
+      <% end %>
+    </td>
+    <% if current_user.admin? %>
+    <td>
+      <%= link_to 'Edit', edit_user_path(user) %>
+      <% if current_user.id != user.id %>
+      | <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+

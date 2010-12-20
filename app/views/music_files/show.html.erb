@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @music_file.url %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @music_file.title %>
+</p>
+
+<p>
+  <b>Artist name:</b>
+  <%= @music_file.artist_name %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @music_file.duration %>
+</p>
+
+<p>
+  <b>Average Rating:</b>
+  <%= @music_file.average_rating %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @music_file.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_music_file_path(@user, @music_file) %> |
+<%= link_to 'Back', music_files_path %>

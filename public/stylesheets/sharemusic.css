@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+}
+body > header, div#main_body, body > footer {
+  display: block;
+  clear: both;
+  width: 960px;
+  padding: 20px;
+  margin: auto;
+}
+body > header, body > footer {
+  background: #eee;
+  overflow: hidden;
+}
+body > header h1 {
+  float: left;
+  margin: 0;
+}
+body > header nav {
+  float: right;
+  margin: 0;
+}
+body > header h1 span {
+  font-size: 9px;
+}
+
+/* tables */
+table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-collapse: separate;
+}
+th {
+  padding: 5px 4px;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+}
+td {
+  padding: 5px 4px;
+  background-color: #E6F2FF;
+  border-bottom: solid 1px #C5DBF7;
+  border-left: solid 1px #C5DBF7;
+}
+
+tr.even-record td {
+  background-color: #fff;
+  border-left: solid 1px #ddd;
+}

@@ -1,0 +1,26 @@
+<% is_current_user = (@user.id == current_user.id) %>
+<p id="notice"><%= notice %></p>
+<section>
+  <h1><%= is_current_user ? 'My' : possessivize(@user.login) %> Music</h1>
+  <% if @user.music_files.present? %>
+  <%= render :partial => 'music_files/list', :locals => { :user => @user, :music_files => @user.music_files } %>
+  <% else %>
+  <p>
+    <% if is_current_user %>
+    You haven't added any music, yet.
+    <% else %>
+    No music!? Tell <%= @user.login %> to get crackin'!
+    <% end %>
+  </p>
+  <% end %>
+</section>
+
+<% if is_current_user %>
+<section>
+  <h4>Add an MP3</h4>
+  <%= render :partial => 'music_files/form', :locals => {:user => @user, :music_file => @user.music_files.build} %>
+</section>
+<% else %>
+<p><%= link_to 'Back to People', users_path %></p>
+<% end %>
+
